@@ -1,7 +1,3 @@
-# Overview
-
-This is a react project on Inventory Management System. A dashboard UI with some components has been added.
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

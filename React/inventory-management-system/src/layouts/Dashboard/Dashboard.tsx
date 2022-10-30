@@ -8,8 +8,12 @@ import {
 } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
+import Container from "@mui/material/Container"
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
 import SearchIcon from "@mui/icons-material/Search";
@@ -18,6 +22,7 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -25,7 +30,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Routes, Route, NavLink, useParams } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
 import MailIcon from "@mui/icons-material/Mail";
@@ -33,12 +38,11 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // Data
 import sidebarLinks from "../../data/sidebar";
-import ProductOrders from "../../pages/ProductOrders/ProductOrders";
-import ProductSales from "../../pages/ProductSales/ProductSales";
-import Dashboard from "../../pages/Dashboard/Dashboard";
-import NotFound from "../../pages/NotFound/NotFound";
 
 const drawerWidth = 240;
 
@@ -182,6 +186,14 @@ export default function MiniDrawer() {
     handleMobileMenuClose();
   };
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+    toast("Logout Successful!");
+  };
+
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -203,8 +215,10 @@ export default function MiniDrawer() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem sx={{ gap: 1 }} onClick={handleLogout}>
+        <LogoutIcon />
+        Logout
+      </MenuItem>
     </Menu>
   );
 
@@ -259,8 +273,6 @@ export default function MiniDrawer() {
       </MenuItem>
     </Menu>
   );
-
-  const params = useParams();
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -358,7 +370,7 @@ export default function MiniDrawer() {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
-                  // selected={{ isActive } ? true : false}
+                // selected={{ isActive } ? true : false}
                 >
                   <ListItemIcon
                     sx={{
@@ -382,14 +394,16 @@ export default function MiniDrawer() {
       {renderMobileMenu}
       {renderMenu}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Breadcrumbs></Breadcrumbs>
-        <Routes>
-          <Route path="" element={<Dashboard />} />
-          <Route path="/product-orders" element={<ProductOrders />} />
-          <Route path="/sales-orders" element={<ProductSales />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Container maxWidth="lg">
+          <Stack spacing={12} direction="row" justifyContent="space-between" alignItems="flex-end">
+            <div>
+              <DrawerHeader />
+              <Breadcrumbs></Breadcrumbs>
+            </div>
+            <Button variant="contained" startIcon={<AddIcon />}>Add Product Order</Button>
+          </Stack>
+          <Outlet />
+        </Container>
       </Box>
     </Box>
   );
