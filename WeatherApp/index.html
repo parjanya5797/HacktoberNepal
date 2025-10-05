@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="weather-default">
+    <main class="app">
+        <header class="app__header">
+            <h1 class="app__title">Weather</h1>
+        </header>
+
+        <section class="controls" aria-label="Search weather by city">
+            <form id="weather-form" class="form" autocomplete="off">
+                <div class="form__row">
+                    <label class="form__label" for="apiKey">API Key</label>
+                    <input id="apiKey" class="input" type="password" placeholder="OpenWeatherMap API key"
+                        aria-label="OpenWeatherMap API key" />
+                    <button type="button" id="saveKey" class="btn btn--secondary"
+                        title="Save API key locally">Save</button>
+                </div>
+                <div class="form__row">
+                    <label class="form__label" for="city">City</label>
+                    <input id="city" class="input" type="text" placeholder="e.g. Kathmandu" required
+                        aria-label="City name" />
+                    <button type="submit" class="btn">Search</button>
+                </div>
+                <p id="message" class="message" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section id="results" class="results" hidden>
+            <div class="card">
+                <div class="card__main">
+                    <img id="icon" class="weather-icon" alt="Weather icon" />
+                    <div class="card__temp">
+                        <span id="temp" class="temp">--</span>
+                        <span class="temp__unit">°C</span>
+                    </div>
+                </div>
+                <div class="card__meta">
+                    <h2 id="cityName" class="city">City</h2>
+                    <p id="desc" class="desc">Description</p>
+                </div>
+                <div class="card__details">
+                    <div class="detail">
+                        <span class="detail__label">Feels like</span>
+                        <span id="feels" class="detail__value">--°C</span>
+                    </div>
+                    <div class="detail">
+                        <span class="detail__label">Humidity</span>
+                        <span id="humidity" class="detail__value">--%</span>
+                    </div>
+                    <div class="detail">
+                        <span class="detail__label">Wind</span>
+                        <span id="wind" class="detail__value">-- m/s</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="loading" class="loading" hidden>
+            <div class="spinner" aria-hidden="true"></div>
+            <span class="loading__text">Loading...</span>
+        </div>
+
+        <footer class="app__footer">
+            <small>
+                Data by
+                <a href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">OpenWeatherMap</a>
+            </small>
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
