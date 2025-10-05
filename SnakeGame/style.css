@@ -1,0 +1,29 @@
+.game-wrapper {
+    position: relative;
+    max-width: 520px;
+    width: 100%
+}
+
+#game {
+    background: #111;
+    border-radius: 8px;
+    box-shadow: 0 0 0 8px #f8f9fa
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .55);
+    border-radius: 8px;
+    color: #fff
+}
+
+@media (max-width:576px) {
+    #game {
+        width: 100%;
+        height: auto
+    }
+}
