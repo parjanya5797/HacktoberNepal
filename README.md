@@ -1,28 +1,46 @@
  
 
-#                                                    Hacktoberfest2022
-![image](https://user-images.githubusercontent.com/99472914/192144059-5cd0b329-f238-474b-b475-7385eaa35d05.png)
+#                                                    Hacktoberfest 2025
 
- 
+[![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](#)
 
-[![Open Source Love](https://firstcontributions.github.io/open-source-badges/badges/open-source-v1/open-source.svg)](https://github.com/sj5027052/Hacktoberfest2022)
+Welcome to Hacktoberfest 2025! This repository is open for friendly, beginner‑friendly, and meaningful contributions throughout October 1–31, 2025.
 
- 
+<h4>What is Hacktoberfest?</h4>
 
-<h4> You can make folders of programming languages and also you can contribute in the repo's below.</h4>
+Hacktoberfest is an annual celebration of open source. You participate by making quality contributions to public repositories on GitHub throughout October. Learn more at the official site: [hacktoberfest.com](https://hacktoberfest.com).
 
-<h4> Feel free to contribute to this repo by creating and editing little programs in any programming language and make different folders for the code you want to contribute. </h4>
+<h4>How to contribute here</h4>
 
-If you want to practice to make a pull request, follow the CONTRIBUTING.md
+- Explore the folders in this repo (there are multiple tech stacks and sample projects).
+- Add small, well‑scoped improvements: bug fixes, docs, tests, examples, or new utility programs.
+- You may create language‑specific folders if they do not already exist and place your code there.
+- Keep PRs atomic and focused; prefer several small PRs over one large PR.
 
- 
+If you want to practice making a pull request, start by reading [CONTRIBUTING.md](/CONTRIBUTING.md).
 
-Check out `good-first-issues` for contributing [here](https://github.com/sj5027052/Hacktoberfest2022/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
-</div>
+### Good first issues
 
-<br>
+Look for issues labeled `good first issue` and `hacktoberfest` in this repository’s Issues tab. If none exist, feel free to open one describing your proposed change before sending a PR.
 
- 
+### Contribution guidelines (quick version)
+
+- Read and follow [CONTRIBUTING.md](/CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](/CODE_OF_CONDUCT.md).
+- Be respectful, kind, and constructive.
+- Write clear commit messages and PR descriptions.
+- Prefer small, testable changes with context on why they help.
+
+### Participation and eligibility
+
+To have your contributions count toward Hacktoberfest 2025, ensure your PRs adhere to the official rules and quality standards:
+
+- Review the official [Participation Guidelines](https://hacktoberfest.com/participation).
+- Submit PRs between October 1–31, 2025 (any time zone).
+- PRs should be useful and follow repository guidelines to be accepted.
+
+### Support
+
+If you like this project, please star it ⭐️ and share it with friends. Questions? Open a discussion or issue and we’ll be happy to help.
 
 ### Author
 
@@ -30,39 +48,10 @@ Check out `good-first-issues` for contributing [here](https://github.com/sj50270
 * [Twitter](https://twitter.com/Saloni18312589)
 * [GitHub](https://github.com/sj5027052)
 
-
- 
-### Contributing
-
-Please read [CONTRIBUTING.md](/CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](/CODE_OF_CONDUCT.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-### Rules
-
-* Read the [CONTRIBUTING.md](/CONTRIBUTING.md) file.
-* Respect people.
-* Be friendly, helpful, and patient.
-* You can contribute in any way.
-
-### Support
-
-If you like this project, please consider supporting it by giving it a ⭐️. It will help us to grow and improve this project and help others to find it.
-
-### Conclusion
-
-- Happy Contributing! 🎉 
-- May you have a great Hacktoberfest 2022! 🎉
-- If you have any questions, feel free to ask me. I will be happy to help you. 😊
-
 ### References
 
-- [Hacktoberfest 2022](https://hacktoberfest.digitalocean.com)
-- [Hacktoberfest 2022 Participation Guidelines](https://hacktoberfest.com/participation)
-
-<br>
-
-- This project and other projects listed above are a part of Hacktoberfest 2022 and are open to all members of the GitHub community. Any member may contribute to these projects without being a collaborator or a maintainer and earn a T-shirt from DigitalOcean and DEV by making four valid pull requests (PRs) between October 1-31 (in any time zone).
-
-- The first 40,000 participants (maintainers and contributors) who complete Hacktoberfest can elect to receive one of two prizes: a tree planted in their name, or the Hacktoberfest 2022 t-shirt.
+- [Hacktoberfest 2025](https://hacktoberfest.com)
+- [Hacktoberfest Participation Guidelines](https://hacktoberfest.com/participation)
 
 **✨ Thanks goes to these wonderful people ✨**
 
@@ -72,5 +61,8 @@ If you like this project, please consider supporting it by giving it a ⭐️. I
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0)
 
- 
- 
+### Conclusion
+
+- Happy Contributing! 🎉
+- May you have a great Hacktoberfest 2025! 🎉
+- If you have any questions, feel free to ask. 😊
