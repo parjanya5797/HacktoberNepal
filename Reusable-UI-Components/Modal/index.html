@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reusable Modal Demo</title>
+    <link rel="stylesheet" href="./modal.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>Reusable Modal Demo</h1>
+        <p>Demonstrates opening/closing, keyboard accessibility, and focus trapping.</p>
+
+        <button id="openModalBtn" class="btn">Open Modal</button>
+        <button id="openSecondModalBtn" class="btn btn--secondary">Open Second Modal</button>
+
+        <!-- Modal 1 -->
+        <div class="modal" id="demoModal" aria-hidden="true">
+            <div class="modal__overlay" data-modal-close></div>
+            <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
+                <header class="modal__header">
+                    <h2 id="demoModalTitle" class="modal__title">Demo Modal</h2>
+                    <button class="modal__close" type="button" aria-label="Close dialog"
+                        data-modal-close>&times;</button>
+                </header>
+                <div class="modal__body">
+                    <p>This is a reusable modal component. Try pressing Tab to cycle focus, and Escape to close.</p>
+                    <label>
+                        Example input
+                        <input type="text" placeholder="Type here">
+                    </label>
+                    <a href="https://example.com" target="_blank" rel="noreferrer">Focusable link</a>
+                </div>
+                <footer class="modal__footer">
+                    <button class="btn" data-modal-close>Close</button>
+                    <button class="btn btn--primary">Primary action</button>
+                </footer>
+            </div>
+        </div>
+
+        <!-- Modal 2 (independent instance) -->
+        <div class="modal" id="secondModal" aria-hidden="true">
+            <div class="modal__overlay" data-modal-close></div>
+            <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="secondModalTitle">
+                <header class="modal__header">
+                    <h2 id="secondModalTitle" class="modal__title">Second Modal</h2>
+                    <button class="modal__close" type="button" aria-label="Close dialog"
+                        data-modal-close>&times;</button>
+                </header>
+                <div class="modal__body">
+                    <p>Each modal instance manages its own state and focus handling.</p>
+                    <button class="btn btn--secondary">Another button</button>
+                </div>
+                <footer class="modal__footer">
+                    <button class="btn" data-modal-close>Close</button>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="./modal.umd.js"></script>
+    <script>
+        (function(){
+            var openBtn = document.getElementById("openModalBtn");
+            var modalEl = document.getElementById("demoModal");
+            var modal = new window.Modal(modalEl);
+
+            openBtn.addEventListener("click", function () { modal.open(); });
+
+            var openSecondBtn = document.getElementById("openSecondModalBtn");
+            var secondEl = document.getElementById("secondModal");
+            var secondModal = new window.Modal(secondEl);
+            openSecondBtn.addEventListener("click", function () { secondModal.open(); });
+        })();
+    </script>
+</body>
+
+</html>
