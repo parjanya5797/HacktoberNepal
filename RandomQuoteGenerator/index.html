@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main class="app">
+        <section class="card" aria-live="polite" aria-busy="true">
+            <div id="quote" class="quote">Loading…</div>
+            <div id="author" class="author"></div>
+            <div class="actions">
+                <button id="new-quote" class="btn primary" type="button" disabled>New Quote</button>
+                <button id="tweet-quote" class="btn" type="button" disabled aria-label="Tweet current quote">Tweet
+                    Quote</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="./app.js" defer></script>
+</body>
+
+</html>
