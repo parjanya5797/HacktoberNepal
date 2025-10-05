@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --panel: #111827;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --border: #1f2937;
+            --accent: #22c55e;
+            --danger: #ef4444;
+            --warn: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+                Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            background: linear-gradient(180deg, var(--bg), #0b1220 60%);
+            color: var(--text);
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: linear-gradient(180deg, var(--panel), #0b1220);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0 0 6px 0;
+            font-size: 22px;
+        }
+
+        p {
+            margin: 6px 0 14px 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input[type="number"] {
+            flex: 1;
+            padding: 10px 12px;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #0b1220;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            border-color: #2b3a53;
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #052e16;
+        }
+
+        .btn.ghost {
+            background: transparent;
+        }
+
+        .status {
+            margin-top: 14px;
+            padding: 10px 12px;
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+        }
+
+        .status.ok {
+            border-color: #14532d;
+            background: rgba(34, 197, 94, 0.08);
+        }
+
+        .status.warn {
+            border-color: #7c2d12;
+            background: rgba(245, 158, 11, 0.08);
+        }
+
+        .status.danger {
+            border-color: #7f1d1d;
+            background: rgba(239, 68, 68, 0.08);
+        }
+
+        .meta {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card" role="main">
+        <h1>Guess The Number</h1>
+        <p>I'm thinking of a number between 1 and 100. Can you guess it?</p>
+
+        <form id="game-form" class="row" autocomplete="off">
+            <label for="guess" class="sr-only">Your guess</label>
+            <input id="guess" name="guess" type="number" inputmode="numeric" min="1" max="100"
+                placeholder="Enter a number (1-100)" required>
+            <button type="submit" class="btn primary">Guess</button>
+            <button type="button" id="btn-reset" class="btn ghost">Reset</button>
+        </form>
+
+        <div id="status" class="status" aria-live="polite">Make your first guess!</div>
+        <div class="meta">
+            <div>Attempts: <span id="attempts">0</span></div>
+            <div>Range: 1 - 100</div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            const form = document.getElementById('game-form');
+            const input = document.getElementById('guess');
+            const statusBox = document.getElementById('status');
+            const attemptsEl = document.getElementById('attempts');
+            const resetBtn = document.getElementById('btn-reset');
+
+            let secret = generateSecret();
+            let attempts = 0;
+            let finished = false;
+
+            function generateSecret() {
+                return Math.floor(Math.random() * 100) + 1;
+            }
+
+            function setStatus(message, type) {
+                statusBox.textContent = message;
+                statusBox.className = 'status' + (type ? ' ' + type : '');
+            }
+
+            function submitGuess(value) {
+                if (finished) return;
+                const num = Number(value);
+                if (!Number.isFinite(num) || num < 1 || num > 100) {
+                    setStatus('Please enter a valid number between 1 and 100.', 'danger');
+                    return;
+                }
+                attempts += 1;
+                attemptsEl.textContent = String(attempts);
+
+                if (num === secret) {
+                    setStatus(`Correct! ${num} is the number. Guessed in ${attempts} attempt${attempts === 1 ? '' : 's'}.`, 'ok');
+                    finished = true;
+                    input.setAttribute('disabled', 'disabled');
+                    return;
+                }
+                if (num < secret) {
+                    setStatus('Too low! Try a higher number.', 'warn');
+                } else {
+                    setStatus('Too high! Try a lower number.', 'warn');
+                }
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                submitGuess(input.value);
+                input.select();
+            });
+
+            resetBtn.addEventListener('click', function () {
+                secret = generateSecret();
+                attempts = 0;
+                attemptsEl.textContent = '0';
+                finished = false;
+                input.removeAttribute('disabled');
+                input.value = '';
+                input.focus();
+                setStatus('Game reset. Start guessing!', '');
+            });
+
+            // Initialize focus
+            input.focus();
+        })();
+    </script>
+</body>
+
+</html>
